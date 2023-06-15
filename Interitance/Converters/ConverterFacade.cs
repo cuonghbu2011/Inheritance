@@ -1,35 +1,21 @@
-﻿using Interitance.Dtos;
-using Interitance.Models;
+﻿using Interitance.Models;
 
 namespace Interitance.Converters
 {
     public class ConverterFacade
     {
-        private readonly IServiceProvider _serviceProvider;
+        private readonly AnimalServiceResolver _animalServiceResolver;
 
-        public ConverterFacade(IServiceProvider serviceProvider)
+        public ConverterFacade(AnimalServiceResolver animalServiceResolver)
         {
-            _serviceProvider = serviceProvider;
+            _animalServiceResolver = animalServiceResolver;
         }
 
-        public object Convert<T>(T animal)
+        public object Convert<T>(T animal) where T : Animal
         {
-            switch (animal)
-            {
-                case Dog dog:
-                    var converter = (IConverter<Dog, DogDto>)_serviceProvider.GetRequiredService(typeof(IConverter<Dog, DogDto>));
+            var service = _animalServiceResolver(animal.GetType().Name);
 
-                    return (object)converter.Convert(dog);
-
-                case Cat cat:
-                    var converter01 = (IConverter<Cat, CatDto>)_serviceProvider.GetRequiredService(typeof(IConverter<Cat, CatDto>));
-
-                    return (object)converter01.Convert(cat);
-                default:
-                    break;
-            }
-
-            return null;
+            return service.Convert(animal);
         }
     }
 }

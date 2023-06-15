@@ -3,15 +3,16 @@ using Interitance.Models;
 
 namespace Interitance.Converters
 {
-    public class CatConverter : AbstractConverter, IConverter<Cat, CatDto>
+    public class CatConverter : AbstractConverter, IConverter
     {
-        public CatDto Convert(Cat animal)
+        public object Convert(object animal)
         {
-            var catDto = base.Convert<Cat, CatDto>(animal);
+            var cat = (Cat)animal;
+            var catDto = base.Convert<Cat, CatDto>(cat);
 
-            catDto.Cat = animal.IAmCat;
+            catDto.Cat = cat.IAmCat;
 
-            return catDto;
+            return (object)catDto;
         }
     }
 }

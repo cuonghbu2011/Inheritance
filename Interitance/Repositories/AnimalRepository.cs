@@ -20,7 +20,6 @@ namespace Interitance.Repositories
             {
                 IAmCat = "meo meo meo"
             } as Animal);
-            results.Add(new Animal());
 
             return results;
         }

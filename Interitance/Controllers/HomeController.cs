@@ -10,26 +10,25 @@ namespace Interitance.Controllers
     public class HomeController : Controller
     {
         private readonly AdditionalService _additionalService;
-        private readonly ConverterFacade _converter;
+        private readonly ConverterFacade _converterFacade;
 
         public HomeController(AdditionalService additionalService,
             ConverterFacade converter)
         {
             _additionalService = additionalService;
-            _converter = converter;
+            _converterFacade = converter;
         }
 
         // GET: HomeController
         [HttpGet]
         public ActionResult Index()
         {
-            //var animals = _additionalService.Get<Animal>();
-            var animals = _additionalService.Search(new Parameters.AninalSearchParams());
-
             var dog = new Dog();
             _additionalService.Update(dog);
 
-            var dtos = animals.Select(x => _converter.Convert(x)).ToList();
+            //var animals = _additionalService.Get<Animal>();
+            var animals = _additionalService.Search(new Parameters.AninalSearchParams());
+            var dtos = animals.Select(x => _converterFacade.Convert(x)).ToList();
 
             return Ok(dtos);
         }

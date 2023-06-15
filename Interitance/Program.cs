@@ -1,6 +1,5 @@
 using Interitance.Application;
 using Interitance.Converters;
-using Interitance.Dtos;
 using Interitance.Models;
 using Interitance.Repositories;
 
@@ -24,9 +23,7 @@ services
 
     .AddScoped<AdditionalService>()
 
-    .AddSingleton<IConverter<Dog, DogDto>, DogConverter>()
-    .AddSingleton<IConverter<Cat, CatDto>, CatConverter>()
-    .AddScoped<ConverterFacade>();
+    .RegisterConverterDependencies();
 
 
 var app = builder.Build();
