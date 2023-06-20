@@ -5,6 +5,8 @@ namespace Interitance.Converters
 {
     public interface IConverter
     {
-        Animal Convert(AnimalDto value);
+        Animal CreateConvert(AnimalDto value);
+
+        AnimalDto ConvertToDto(Animal value);
     }
 }

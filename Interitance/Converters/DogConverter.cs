@@ -5,7 +5,19 @@ namespace Interitance.Converters
 {
     public class DogConverter : IConverter
     {
-        public Animal Convert(AnimalDto value)
+        public AnimalDto ConvertToDto(Animal value)
+        {
+            var dog = value as Dog;
+
+            return new DogDto
+            {
+                Name = value.Name,
+                Id = value.Id,
+                Dog = dog.IAmDog
+            };
+        }
+
+        public Animal CreateConvert(AnimalDto value)
         {
             var dogDto = value as DogDto;
 

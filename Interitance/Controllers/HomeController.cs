@@ -1,7 +1,6 @@
 ﻿using Interitance.Application;
 using Interitance.Converters;
 using Interitance.Dtos;
-using Interitance.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Interitance.Controllers
@@ -10,10 +9,10 @@ namespace Interitance.Controllers
     [Route("[controller]")]
     public class HomeController : Controller
     {
-        private readonly AdditionalService _additionalService;
+        private readonly AnimalService _additionalService;
         private readonly ConverterFacade _converterFacade;
 
-        public HomeController(AdditionalService additionalService,
+        public HomeController(AnimalService additionalService,
             ConverterFacade converter)
         {
             _additionalService = additionalService;
@@ -24,14 +23,17 @@ namespace Interitance.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var dogDto = new DogDto();
-            var dog = _converterFacade.Convert(dogDto);
+            var dogDto = new DogDto()
+            {
+                Type = "dog",
+            };
+            var dog = _converterFacade.CreateConvert(dogDto);
 
-            _additionalService.Update(dog);
+            _additionalService.Create(dog);
 
             //var animals = _additionalService.Get<Animal>();
             var animals = _additionalService.Search(new Parameters.AninalSearchParams());
-            var dtos = animals.Select(x => _converterFacade.Convert(x)).ToList();
+            var dtos = animals.Select(x => _converterFacade.ConvertToDto(x)).ToList();
 
             return Ok(dtos);
         }

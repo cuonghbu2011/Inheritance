@@ -1,4 +1,5 @@
-﻿using Interitance.Models;
+﻿using Interitance.Dtos;
+using Interitance.Models;
 
 namespace Interitance.Converters
 {
@@ -11,11 +12,19 @@ namespace Interitance.Converters
             _animalServiceResolver = animalServiceResolver;
         }
 
-        public object Convert<T>(T animal) where T : Animal
+        public Animal CreateConvert(AnimalDto animal)
         {
+            var service = _animalServiceResolver(animal.Type);
+
+            return service.CreateConvert(animal);
+        }
+
+        public AnimalDto ConvertToDto(Animal animal)
+        {
+            //TODO not sure if this works
             var service = _animalServiceResolver(animal.GetType().Name);
 
-            return service.Convert(animal);
+            return service.ConvertToDto(animal);
         }
     }
 }

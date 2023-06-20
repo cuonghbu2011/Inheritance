@@ -4,12 +4,12 @@ using Interitance.Repositories;
 
 namespace Interitance.Application
 {
-    public class AdditionalService
+    public class AnimalService
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly IAnimalSearch _additionalSearch;
 
-        public AdditionalService(IServiceProvider serviceProvider,
+        public AnimalService(IServiceProvider serviceProvider,
             IAnimalSearch additionalSearch)
         {
             _serviceProvider = serviceProvider;
@@ -23,7 +23,7 @@ namespace Interitance.Application
             return service.Get();
         }
 
-        public void Update<T>(T entity) where T : Animal, new()
+        public void Create<T>(T entity) where T : Animal, new()
         {
             var service = (IAnimalRepository<T>)_serviceProvider.GetRequiredService(typeof(IAnimalRepository<T>));
 
