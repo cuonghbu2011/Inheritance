@@ -9,10 +9,10 @@ namespace Interitance.Controllers
     [Route("[controller]")]
     public class HomeController : Controller
     {
-        private readonly AdditionalService _additionalService;
+        private readonly AnimalService _additionalService;
         private readonly ConverterFacade _converterFacade;
 
-        public HomeController(AdditionalService additionalService,
+        public HomeController(AnimalService additionalService,
             ConverterFacade converter)
         {
             _additionalService = additionalService;

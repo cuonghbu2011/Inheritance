@@ -21,7 +21,7 @@ services
     .AddScoped<IAnimalRepository<Animal>, AnimalRepository>()
     .AddScoped<IAnimalSearch, AnimalRepository>()
 
-    .AddScoped<AdditionalService>()
+    .AddScoped<AnimalService>()
 
     .RegisterConverterDependencies();
 

@@ -4,12 +4,12 @@ using Interitance.Repositories;
 
 namespace Interitance.Application
 {
-    public class AdditionalService
+    public class AnimalService
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly IAnimalSearch _additionalSearch;
 
-        public AdditionalService(IServiceProvider serviceProvider,
+        public AnimalService(IServiceProvider serviceProvider,
             IAnimalSearch additionalSearch)
         {
             _serviceProvider = serviceProvider;
