@@ -1,5 +1,6 @@
 ﻿using Interitance.Application;
 using Interitance.Converters;
+using Interitance.Dtos;
 using Interitance.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,7 +24,9 @@ namespace Interitance.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var dog = new Dog();
+            var dogDto = new DogDto();
+            var dog = _converterFacade.Convert(dogDto);
+
             _additionalService.Update(dog);
 
             //var animals = _additionalService.Get<Animal>();

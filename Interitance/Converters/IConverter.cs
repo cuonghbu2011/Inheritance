@@ -1,7 +1,10 @@
-﻿namespace Interitance.Converters
+﻿using Interitance.Dtos;
+using Interitance.Models;
+
+namespace Interitance.Converters
 {
     public interface IConverter
     {
-        object Convert(object value);
+        Animal Convert(AnimalDto value);
     }
 }

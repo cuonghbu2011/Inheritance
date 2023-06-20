@@ -8,7 +8,7 @@ namespace Interitance.Repositories
         IAnimalRepository<Animal>,
         IAnimalSearch
     {
-        public override IList<Animal> Get()
+        public IList<Animal> Get()
         {
             var results = new List<Animal>();
 

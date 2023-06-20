@@ -4,7 +4,7 @@ namespace Interitance.Repositories
 {
     public class DogRepository : AbstractAnimalRepository<Dog>, IAnimalRepository<Dog>
     {
-        public override IList<Dog> Get()
+        public IList<Dog> Get()
         {
             return new List<Dog>();
         }

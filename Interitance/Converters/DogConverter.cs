@@ -3,16 +3,18 @@ using Interitance.Models;
 
 namespace Interitance.Converters
 {
-    public class DogConverter : AbstractConverter, IConverter
+    public class DogConverter : IConverter
     {
-        public object Convert(object animal)
+        public Animal Convert(AnimalDto value)
         {
-            var dog = (Dog)animal;
-            var dogDto = base.Convert<Dog, DogDto>(dog);
+            var dogDto = value as DogDto;
 
-            dogDto.Dog = dog.IAmDog;
-
-            return (object)dogDto;
+            return new Dog
+            {
+                Id = value.Id,
+                Name = value.Name,
+                IAmDog = dogDto.Dog
+            };
         }
     }
 }
