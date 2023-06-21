@@ -8,6 +8,8 @@ namespace Interitance.Repositories
         IAnimalRepository<Animal>,
         IAnimalSearch
     {
+        public Type Type => typeof(Animal);
+
         public IList<Animal> Get()
         {
             var results = new List<Animal>();
